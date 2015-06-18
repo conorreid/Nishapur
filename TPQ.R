@@ -64,3 +64,21 @@ abline(Difference.and.Date)
 # coins instead, and hope we can get a better predictive model out of that. Let's 
 # first plot our data to see if any pattern exists.
 plot(Hijri.TPQ, Difference)
+# It seems there's a very clear pattern, clearer than any in of our other data. 
+# As TPQ rises, so too does the difference, and very clearly. From around 300 to 
+# 350, there are coins deposited at a difference of almost 0, so immediately, to
+# up to 50. But after 350, which is rougly 960 AD, the difference then begins to
+# increase. It looks like only old coins are sticking around, and newer minted ones
+# are deposited immediately. Let's construct a linear model to see this 
+# relationship in full.
+Difference.and.TPQ <- lm(Difference ~ Hijri.TPQ)
+summary(Difference.and.TPQ)
+abline(Difference.and.TPQ)
+# Wow. This model seems to be very powerful. The p-values and F-statistic are 
+# essentially zero, and the R squared is an amazing 0.6905. That means that a 
+# startling 69.05% of the variation in the difference is accounted for by the 
+# TPQ of the coin hoards. Let's interpret the slope for a second, as well. As TPQ
+# rises by 1 year, the difference between the TPQ and the coin date rises by 0.81
+# years. That is, as TPQ gets 1 year higher, the likelihood is that the individual
+# coins in that hoard are almost a year older than the ones in a hoard deposited
+# a year ealier. 
